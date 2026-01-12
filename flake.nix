@@ -14,13 +14,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    illogical-impulse = {
-      url = "github:xBLACKICEx/end-4-dots-hyprland-nixos";
+    caelestia-shell = {
+      url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, illogical-impulse, ... }@inputs: {
+  outputs = { self, nixpkgs, home-manager, hyprland, caelestia-shell, ... }@inputs: {
     nixosConfigurations = {
       # NVIDIA Desktop PC
       zaroc-desktop = nixpkgs.lib.nixosSystem {
@@ -32,8 +32,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.zaroc = import ./home/zaroc.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };
@@ -48,7 +48,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.zaroc = import ./home/zaroc.nix;
           }
         ];
@@ -64,7 +63,6 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.zaroc = import ./home/server.nix;
           }
         ];
@@ -79,8 +77,8 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.extraSpecialArgs = { inherit inputs; };
             home-manager.users.zaroc = import ./home/zaroc.nix;
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };

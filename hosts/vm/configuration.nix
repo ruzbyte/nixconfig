@@ -35,32 +35,26 @@
   
   services.libinput.enable = true;
 
-  users.users.zaroc = {
-     isNormalUser = true;
-     extraGroups = [ "wheel" ];
-     packages = with pkgs; [
-       tree
-     ];
-   };
-  services.getty.autologinUser = "zaroc";
+  # services.getty.autologinUser = "zaroc";
   
+  services.xserver = {
+	  enable = true;
+	  displayManager.sddm.enable = true;
+	  desktopManager.plasma6.enable = true;
+	  # displayManager.autoLogin.enable = true;
+	  # displayManager.autoLogin.user = "zaroc";
 
-  # KDE Plasma Desktop
-  services.xserver.enable = true;
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-  services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "zaroc";
-
-
-  # Hyprland
-  programs.hyprland = {
-    enable = true;
-    package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-    xwayland.enable = true;
+    displayManager.sessionPackages = with pkgs; [
+      hyprland
+    ];
   };
 
   programs.firefox.enable = true;
+
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
      vim 

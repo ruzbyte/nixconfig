@@ -2,31 +2,38 @@
 
 {
   imports = [
-    inputs.illogical-impulse.homeManagerModules.default
+    inputs.caelestia-shell.homeManagerModules.default
   ];
 
   home.username = "zaroc";
   home.homeDirectory = "/home/zaroc";
-
-  illogical-impulse = {
-    enable = true;
-    hyprland = {
-      package = inputs.hyprland.packages.x86_64-linux.hyprland;
-      xdgPortalPackage = inputs.hyprland.packages.x86_64-linux.xdg-desktop-portal-hyprland;
-      ozoneWayland.enable = true;
-    };
-
-    dotfiles = {
-      fish.enable = true;
-      kitty.enable = true;
-    };
-  };
 
   # Home Manager state version
   home.stateVersion = "25.05";
 
   # Let Home Manager manage itself
   programs.home-manager.enable = true;
+
+  programs.caelestia = {
+    enable = true;
+    systemd = {
+      enable = false; # if you prefer starting from your compositor
+      target = "graphical-session.target";
+      environment = [];
+    };
+    settings = {
+      bar.status = {
+        showBattery = false;
+      };
+      paths.wallpaperDir = "~/Images";
+    };
+    cli = {
+      enable = true; # Also add caelestia-cli to path
+      settings = {
+        theme.enableGtk = false;
+      };
+    };
+  };
 
   # Git configuration
   programs.git = {
