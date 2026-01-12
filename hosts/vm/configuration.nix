@@ -37,8 +37,6 @@
 
   # services.getty.autologinUser = "zaroc";
   
-
-  # KDE Plasma Desktop
   services.xserver = {
 	  enable = true;
 	  displayManager.sddm.enable = true;

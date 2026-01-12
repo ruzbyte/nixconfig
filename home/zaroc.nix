@@ -72,7 +72,7 @@
       name = "JetBrains Mono";
       size = 11;
     };
-    theme = "Dracula";
+    themeFile = "Dracula";
     settings = {
       background_opacity = "0.6";
       confirm_os_window_close = 0;
@@ -82,7 +82,7 @@
   # VSCode
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       jnoortheen.nix-ide
       bbenoist.nix
     ];
